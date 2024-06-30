@@ -1,7 +1,7 @@
-import wisp.{type Request, type Response}
-import gleam/string_builder
-import gleam/http.{Get, Post}
 import app/web
+import gleam/http.{Get, Post}
+import gleam/string_builder
+import wisp.{type Request, type Response}
 
 pub fn handle_request(req: Request) -> Response {
   use req <- web.middleware(req)
@@ -31,7 +31,7 @@ fn home_page(req: Request) -> Response {
   // used to return a 405: Method Not Allowed response for all other methods.
   use <- wisp.require_method(req, Get)
 
-  let html = string_builder.from_string("Hello, Joe!")
+  let html = string_builder.from_string("<h1>Hello, Joe!</h1>")
   wisp.ok()
   |> wisp.html_body(html)
 }
